@@ -1,0 +1,1 @@
+export { RatingsDetail } from "./RatingsDetail";

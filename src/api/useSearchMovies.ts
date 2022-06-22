@@ -21,7 +21,7 @@ export const useSearchMovies = ({ searchTerm }: { searchTerm: string }) =>
     ["search", searchTerm],
     async ({ pageParam = 1 }) => {
       const response = await fetch(
-        `http://omdbapi.com/?s=${searchTerm}&apikey=${API_KEY}&page=${pageParam}`
+        `http://omdbapi.com/?s=${searchTerm}&apikey=${API_KEY}&page=${pageParam}&type=movie`
       );
       const data: Response = await response.json();
       return data;
