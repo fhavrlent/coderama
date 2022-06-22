@@ -6,13 +6,7 @@ import { store } from "./store";
 
 import "./App.css";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      cacheTime: 0,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 const App = () => (
   <Provider store={store}>

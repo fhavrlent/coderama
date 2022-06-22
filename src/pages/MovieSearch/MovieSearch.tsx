@@ -1,11 +1,13 @@
-import { useState } from "react";
 import { Row, Col, Empty } from "antd";
 
 import { useSearchMovies } from "../../api";
 import { MovieCard, Search, LoadMore } from "../../components";
+import { useSearchParams } from "react-router-dom";
 
 export const MovieSearch = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchTerm = searchParams.get("searchTerm") ?? "";
 
   const { data, isFetching } = useSearchMovies({
     searchTerm,
@@ -13,8 +15,12 @@ export const MovieSearch = () => {
 
   return (
     <>
-      <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-
+      <Search
+        searchTerm={searchTerm}
+        setSearchTerm={(newSearchTerm) =>
+          setSearchParams({ searchTerm: newSearchTerm })
+        }
+      />
       {(!data && !isFetching) || data?.pages[0].Response === "False" ? (
         <Empty />
       ) : (
