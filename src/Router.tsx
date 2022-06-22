@@ -1,13 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { MovieDetail, MovieSearch } from "./pages";
+import { FavoriteMovies, LayoutPage, MovieDetail, MovieSearch } from "./pages";
 
 export const Router = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<MovieSearch />} />
-      <Route path="/movie/:id" element={<MovieDetail />} />
-      {/* <Route path="/favorites" element={<FavoriteMovies />} /> */}
+      <Route element={<LayoutPage />}>
+        <Route path="/" element={<MovieSearch />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
+        <Route path="/favorites" element={<FavoriteMovies />} />
+      </Route>
     </Routes>
   </BrowserRouter>
 );

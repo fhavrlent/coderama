@@ -1,7 +1,9 @@
 import { Router } from "./Router";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
 
 import "./App.css";
+import { store } from "./store";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,9 +14,11 @@ const queryClient = new QueryClient({
 });
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <Router />
-  </QueryClientProvider>
+  <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
+      <Router />
+    </QueryClientProvider>
+  </Provider>
 );
 
 export default App;
