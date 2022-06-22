@@ -23,7 +23,6 @@ export const MovieDetail = () => {
 
   return (
     <Card
-      className={style.movieContent}
       title={
         <PageHeader
           onBack={() => navigate(-1)}
