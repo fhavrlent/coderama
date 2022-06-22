@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Input, Button, Row, Col, Card, Image, Space } from "antd";
+import { Input, Button, Row, Col } from "antd";
 
 import { useSearchMovies } from "../../api";
+import { MovieCard } from "../../components/movieCard";
 
 export const MovieSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data, refetch, fetchNextPage, hasNextPage } = useSearchMovies({
     searchTerm,
-    page: 1,
   });
-  console.log(data);
+
   return (
     <>
       <Row justify="center" style={{ marginBottom: "1rem" }}>
@@ -32,14 +32,7 @@ export const MovieSearch = () => {
         {data?.pages.map((page) =>
           page.Search.map((movie) => (
             <Col span={8} key={movie.imdbID}>
-              <Card title={movie.Title} extra={`${movie.Year}, ${movie.Type}`}>
-                <Space
-                  direction="horizontal"
-                  style={{ width: "100%", justifyContent: "center" }}
-                >
-                  <Image src={movie.Poster} alt={movie.Title} width={200} />
-                </Space>
-              </Card>
+              <MovieCard {...movie} />
             </Col>
           ))
         )}

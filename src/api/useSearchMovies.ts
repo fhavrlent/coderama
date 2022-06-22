@@ -16,15 +16,9 @@ type Response = {
   Response: string;
 };
 
-export const useSearchMovies = ({
-  searchTerm,
-  page,
-}: {
-  searchTerm: string;
-  page: number;
-}) =>
+export const useSearchMovies = ({ searchTerm }: { searchTerm: string }) =>
   useInfiniteQuery(
-    ["search", searchTerm, page],
+    ["search", searchTerm],
     async ({ pageParam = 1 }) => {
       const response = await fetch(
         `http://omdbapi.com/?s=${searchTerm}&apikey=${API_KEY}&page=${pageParam}`
