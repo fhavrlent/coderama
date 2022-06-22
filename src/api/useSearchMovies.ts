@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "react-query";
 
-import { API_KEY } from "./config";
+import { API_KEY, API_URL } from "./config";
 
 export type MovieType = {
   Title: string;
@@ -21,7 +21,7 @@ export const useSearchMovies = ({ searchTerm }: { searchTerm: string }) =>
     ["search", searchTerm],
     async ({ pageParam = 1 }) => {
       const response = await fetch(
-        `http://omdbapi.com/?s=${searchTerm}&apikey=${API_KEY}&page=${pageParam}&type=movie`
+        `${API_URL}/?s=${searchTerm}&apikey=${API_KEY}&page=${pageParam}&type=movie`
       );
       const data: Response = await response.json();
       return data;

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-import { API_KEY } from "./config";
+import { API_KEY, API_URL } from "./config";
 import { MovieType } from "./useSearchMovies";
 
 type Rating = {
@@ -35,9 +35,7 @@ export const useFetchMovieById = (id: string) =>
   useQuery(
     ["movieDetail", id],
     async () => {
-      const response = await fetch(
-        `http://omdbapi.com/?i=${id}&apikey=${API_KEY}`
-      );
+      const response = await fetch(`${API_URL}/?i=${id}&apikey=${API_KEY}`);
       const data: MovieDetailDTO = await response.json();
       return data;
     },
