@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Row, Col, Empty } from "antd";
 
 import { useSearchMovies } from "../../api";
-import { MovieCard } from "../../components/MovieCard";
-import { Search } from "../../components/Search";
-import { LoadMore } from "../../components/LoadMore";
+import { MovieCard, Search, LoadMore } from "../../components";
 
 export const MovieSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");

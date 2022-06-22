@@ -2,9 +2,7 @@ import { Card, Col, Empty, Row, Spin, PageHeader, Image } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useFetchMovieById } from "../../api";
-import { MovieInfo } from "../../components/MovieInfo";
-import { MovieTitle } from "../../components/MovieTitle";
-import { RatingsDetail } from "../../components/RatingsDetail";
+import { MovieInfo, MovieTitle, RatingsDetail } from "../../components";
 
 import style from "./MovieDetail.module.css";
 
@@ -14,22 +12,18 @@ export const MovieDetail = () => {
 
   const { data, isLoading } = useFetchMovieById(id ?? "");
 
-  if (isLoading)
+  if (isLoading || !data || data?.Response === "False")
     return (
-      <Row justify="center" className={style.spinRow}>
-        <Col>
-          <Spin size="large" />
-        </Col>
+      <Row justify="center" className={style.noDataRow}>
+        <Col>{isLoading ? <Spin size="large" /> : <Empty />}</Col>
       </Row>
     );
-
-  if (!data || data?.Response === "False") return <Empty />;
 
   const { Year, Ratings, Poster } = data;
 
   return (
     <Card
-      style={{ margin: "2rem" }}
+      className={style.movieContent}
       title={
         <PageHeader
           onBack={() => navigate(-1)}

@@ -1,7 +1,7 @@
 import { Row, Col } from "antd";
 import { useSelector } from "react-redux";
 
-import { MovieCard } from "../../components/MovieCard";
+import { MovieCard } from "../../components";
 import { getFavoriteMovies } from "../../store/features/favoriteMovies/favoriteMoviesSlice";
 
 export const FavoriteMovies = () => {
