@@ -1,9 +1,10 @@
-import { Router } from "./Router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 
-import "./App.css";
+import { Router } from "./Router";
 import { store } from "./store";
+
+import "./App.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
